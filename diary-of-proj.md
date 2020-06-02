@@ -19,4 +19,5 @@
 - 내일 계획
   - front : Help category의 Location & FAQ 페이지 구현 __ FAQ UI 자체 구성 및 Location을 위한 map API 사용구현이 관건
   - back : Community category의 page 구성을 위한 DB 추가 구성 및 해당 VO, DAO 구현
+  * 시간이 남으면 Notice 구현 (front-UI / back-DB,VO,DAO,Controller or 'Action' design pattern study)
 </code></pre>
