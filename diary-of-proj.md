@@ -21,3 +21,12 @@
   - back : Community category의 page 구성을 위한 DB 추가 구성 및 해당 VO, DAO 구현
   * 시간이 남으면 Notice 구현 (front-UI / back-DB,VO,DAO,Controller or 'Action' design pattern study)
 </code></pre>
+
+## day03
+<pre><code>- 진행상황
+  - front : Help의 Location.html, FAQ.jsp 완성 / notice.jsp 간단 UI구성 및 back과 연동 성공 (제목 부분만)
+  - back : community 부분의 VO, DAO 완성(이후 작업 중 수정 필요) / notice.jsp를 위한 table생성 및 front와의 DB 연동 성공
+- 내일 계획
+  - front : notice.jsp와 연동되는 showNotice.jsp 구현 및 back과의 연동
+  - showNotice.jsp로의 데이터 출력을 위한 controller 작업 및 진행 중 필요하면 NoticeDAO 수정
+</code></pre>
