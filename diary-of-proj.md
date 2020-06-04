@@ -28,5 +28,5 @@
   - back : community 부분의 VO, DAO 완성(이후 작업 중 수정 필요) / notice.jsp를 위한 table생성 및 front와의 DB 연동 성공
 - 내일 계획
   - front : notice.jsp와 연동되는 showNotice.jsp 구현 및 back과의 연동
-  - showNotice.jsp로의 데이터 출력을 위한 controller 작업 및 진행 중 필요하면 NoticeDAO 수정
+  - back : showNotice.jsp로의 데이터 출력을 위한 controller 작업 및 진행 중 필요하면 NoticeDAO 수정
 </code></pre>
