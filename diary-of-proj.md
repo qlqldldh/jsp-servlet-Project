@@ -30,3 +30,12 @@
   - front : notice.jsp와 연동되는 showNotice.jsp 구현 및 back과의 연동
   - back : showNotice.jsp로의 데이터 출력을 위한 controller 작업 및 진행 중 필요하면 NoticeDAO 수정
 </code></pre>
+
+## day04
+<pre><code>- 진행 상황
+  - front : showNotice.jsp 생성 및 notice.jsp와의 연결 성공
+  - back : notice.jsp-showNotice.jsp 연결을 위한 DAO 수정, Controller 기능 추가 / showNotice.jsp로 데이터 출력 성공
+- 내일 계획
+  - front : update Question, Request Lectures 페이지 생성 및 상세 페이지 생성
+  - back : 위 두 페이지를 위한 테이블 생성, VO/DAO/Controller 구성
+</code></pre>
