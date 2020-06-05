@@ -39,3 +39,12 @@
   - front : update Question, Request Lectures 페이지 생성 및 상세 페이지 생성
   - back : 위 두 페이지를 위한 테이블 생성, VO/DAO/Controller 구성
 </code></pre>
+
+## day05
+<pre><code>- 진행 상황
+  - front : uploadQ.jsp, showQ.jsp, writeQ.jsp UI 구성
+  - back : 각 페이지와 DB 연동 성공 (QuestionController 완성)
+- 다음주 계획
+  - front : 
+  - back : 
+</code></pre>
