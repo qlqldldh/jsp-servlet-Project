@@ -45,6 +45,6 @@
   - front : uploadQ.jsp, showQ.jsp, writeQ.jsp UI 구성
   - back : 각 페이지와 DB 연동 성공 (QuestionController 완성)
 - 다음주 계획
-  - front : 
-  - back : 
+  - front : 계정 유형에 따라 폼 일부 다르게 출력하도록 구현 / 각 lectures의 상세 페이지 구현
+  - back : 강사의 lecture upload page 를 위한 Controller 수정 / password찾기 DAO 메소드 추가 / 각 게시글 삭제 위한 DAO delete 구현
 </code></pre>
