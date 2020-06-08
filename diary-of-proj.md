@@ -55,4 +55,4 @@
   - back : 강사이름이 출력되도록 하기 위한 Controller 수정, DAO 메소드 추가 / showLecture.jsp의 값 출력을 위한 DB 연동 및 데이터 전송 성공
 - 내일 계획
   - front : course-grid-2.jsp에서 upload 버튼 추가 / writeLecture.jsp UI 구현
-  - back : KlectureDAO의 insert 메소드 수정 / 모든 DAO에 modify, delete 메소드 추가__*</
+  - back : KlectureDAO의 insert 메소드, LectureController 수정 / 모든 DAO에 modify, delete 메소드 추가__* / ajax reply test </code></pre>
