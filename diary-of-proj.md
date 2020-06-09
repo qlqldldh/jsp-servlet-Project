@@ -45,6 +45,14 @@
   - front : uploadQ.jsp, showQ.jsp, writeQ.jsp UI 구성
   - back : 각 페이지와 DB 연동 성공 (QuestionController 완성)
 - 다음주 계획
-  - front : 
-  - back : 
+  - front : 계정 유형에 따라 폼 일부 다르게 출력하도록 구현 / 각 lectures의 상세 페이지 구현
+  - back : 강사의 lecture upload page 를 위한 Controller 수정 / password찾기 DAO 메소드 추가 / 각 게시글 삭제 위한 DAO delete 구현
 </code></pre>
+
+## day06
+<pre><code>- 진행상황
+  - front : course-grid-2.jsp의 lecture list의 contents가 나오던 부분을 강사 이름이 출력되도록 수정 / showLecture.jsp UI 구현
+  - back : 강사이름이 출력되도록 하기 위한 Controller 수정, DAO 메소드 추가 / showLecture.jsp의 값 출력을 위한 DB 연동 및 데이터 전송 성공
+- 내일 계획
+  - front : course-grid-2.jsp에서 upload 버튼 추가 / writeLecture.jsp UI 구현
+  - back : KlectureDAO의 insert 메소드, LectureController 수정 / 모든 DAO에 modify, delete 메소드 추가__* / ajax reply test </code></pre>
