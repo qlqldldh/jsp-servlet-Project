@@ -15,7 +15,7 @@ public class QcommentDAO {
 	
 	public int insert(QcommentVO qcv) throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("insert into qcomment values(?,?,?,?,?,sysdate)");
+		pstmt=conn.prepareStatement("insert into qcomment values(?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'))");
 		
 		pstmt.setInt(1, qcv.getQueno());
 		pstmt.setString(2, qcv.getTitle());

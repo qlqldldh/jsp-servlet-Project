@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
- 
-<%!
-   ArrayList uq;
-%>
- 
+
 <!DOCTYPE html>
 <html lang="ko-kr">
 <head>
@@ -53,28 +48,94 @@
              $("#logbut").attr("data-toggle","#");
              $("#logbut").attr("href","../people/login");
              $('#logspn').html("LogOut");
-             
-             $('#btnarea').html("<button onclick=\"location.href='writeQ.jsp'\" id=\"ulbtn\">upload</button>");
-              /* $('#ulbtn').attr("onclick","location.href='writeQ.jsp'");
-              $('#ulbtn').html("upload"); */
           <%} else{%>
              $("#logbut").attr("data-target","#login");
             $("#logbut").attr("data-toggle","modal");
             $("#logbut").attr("href","#");
             $('#logspn').html("LogIn");
-            $('#btnarea').html("");
-            /* $('#ulbtn').attr("onclick","");
-            $('#ulbtn').html(""); */
           <%}%>
           
-          <%uq=(ArrayList)session.getAttribute("uploadq");%>
        });
     </script>
     <style>
     td, th{
        text-align:center;
     }
-    #ulbtn{
+    #text1 {
+        border-left:none;
+        border-right:none;
+        border-top:none;
+        border-bottom:none;
+        width: 1100px;
+        height: 100px;
+        margin: auto;
+    }
+    #but1 , #but2{
+        width: 70px;
+        height: 30px;
+        }
+       #replytext{
+            margin: auto;
+        }
+    }
+    #btnreply{
+        margin:auto;
+        margin-left:px;
+    }
+    #but1{
+        margin-right:auto;
+    }
+    
+    #but2{
+        margin-left:957px;
+    }
+    
+    #qusetion, #id, #date1 {
+        border-left:none;
+        border-right:none;
+        border-top:none;
+        border-bottom:none;
+        }
+        
+        #replytxt{
+        	border-style:solid;
+        	border-width:1px;
+        	border-radius:10px;
+        	width:700px;
+        	height:100px;
+        	
+        	margin-bottom:8px;
+        }
+        
+        #details{
+        	margin-top:60px;
+        }
+        
+        #pre{
+        	padding-bottom:100px;
+        }
+        
+        #ntitle{
+        	border-style:solid;
+        	border-color:black;
+        	border-width:0.5px;
+        	width:700px;
+        	height:60px;
+        	margin-top:30px;
+        	text-align:center;
+        }
+        #nlect{
+        	border-style:solid;
+        	border-color:gray;
+        	border-width:0.5px;
+        	padding-left:30px;
+        }
+        textarea{
+        	resize:none;
+        	width:1000px;
+        	height:600px;
+        }
+        #ulbtn{
     	margin-top:15px;
     	width:100px;
     	height:40px;
@@ -86,8 +147,8 @@
     	transition:0.5s;
     	/* transition:color 0.5s; */
     }
-    
-    #ulbtn:hover{
+       
+       #ulbtn:hover{
     	background-color:yellow;
     	color:black;
     }
@@ -264,74 +325,43 @@
     
     <div class="all-title-box">
         <div class="container text-center">
-            <h1>Question<span class="m_1">질문 올리기</span></h1>
+            <h1>Notice<span class="m_1">Upload Notice</span></h1>
         </div>
     </div>
     
     <div id="overviews" class="section wb">
         <div class="container">
-            <div class="section-title row text-center">
+            <!-- <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <p class="lead">Upload Question</p>
+                    <p class="lead">Notice Informations by Administrator.</p>
                 </div>
-            </div><!-- end title -->
-     <!-- ===================================start core=================================== -->
+            </div>end title -->
+     <!-- ===================================start core - upload question area=================================== -->
     <div>
+    <form action="../notice/write" method="post">
        <table class="table">
           <tr>
-             <th>No.</th>
-             <th>Lecture</th>
-             <th>Question</th>
-             <th>id</th>
-             <th>date</th>
-          </tr>
-             <% ArrayList<String> temp;
-    		for(int i=0;i<uq.size();i++){  temp=(ArrayList<String>)uq.get(i);%>
-						<tr>
-							<%for(int j=0;j<temp.size();j++) { if(j==2){%>
-							<td><a href="../question/detail?uqdet=<%=temp.get(j) %>"><%=temp.get(j) %></a>
-								<%} else{%>
-							<td><%=temp.get(j) %></td>
-							<%} %>
-							<%} %>
-						</tr>
-						<%} %>
-						<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td id="btnarea"><button onclick="location.href='writeQ.jsp'" id="ulbtn">upload</button></td>
-						</tr>
+             <th><font size="10px">Title</font> <br><input type="text" name="ntitle" id="ntitle" placeholder="Type the Title"></th>
+              <!-- <th><font size="5px">Lecture : </font><input type="text" name="nlect" id="nlect" placeholder="Type related lecture"></th> -->
+             </tr>
        </table>
-    </div>
-    <!-- ===================================end core=================================== -->
+       <hr>
+       <div align="center" id="details">
+               <!-- <input type="text" name="qcontent" id="qcontent"> -->
+               <textarea name="ncontent" required wrap="hard" placeholder="Enter"></textarea><br><br>
+               <input type="submit" value="Upload!" id="ulbtn">
+       </div>
+       </form>
+       <br>
+       <br><br>
+       
+       <!-- ===================================end core - upload question area=================================== -->
+
     <br><br>
-    <!-- <div class="parallax section dbcolor">
-        <div class="container">
-            <div class="row logos">
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_01.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_02.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_03.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_04.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_05.png" alt="" class="img-repsonsive"></a>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                    <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"></a>
-                </div>
-            </div>end row
-            
-        </div>end container
-    </div>end section -->
+    
+     </div>
+     </div>
+ </div>
  
     <footer class="footer">
         <div class="container">
@@ -399,7 +429,6 @@
     </div><!-- end copyrights -->
  
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-
  
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>

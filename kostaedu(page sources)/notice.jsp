@@ -54,11 +54,17 @@
  				$("#logbut").attr("data-toggle","#");
  				$("#logbut").attr("href","../people/login");
  				$('#logspn').html("LogOut");
+ 				<%if(session.getAttribute("id").toString().equals("admin")){%>
+ 					$('#btnarea').html("<button onclick=\"location.href='writeNotice.jsp'\" id=\"ulbtn\">upload</button>");
+ 				<%} else {%>
+ 					$('#btnarea').html("");
+ 				<%}%>
  			<%} else{%>
  				$("#logbut").attr("data-target","#login");
 				$("#logbut").attr("data-toggle","modal");
 				$("#logbut").attr("href","#");
 				$('#logspn').html("LogIn");
+				$('#btnarea').html("");
  			<%}%>
  			
  			<%notList=(ArrayList)session.getAttribute("notlst");%>
@@ -70,6 +76,24 @@
 td, th {
 	text-align: center;
 }
+
+#ulbtn{
+    	margin-top:15px;
+    	width:100px;
+    	height:40px;
+    	border-style:solid;
+    	border-radius:8px;
+    	
+    	background-color:green;
+    	color:white;
+    	transition:0.5s;
+    	/* transition:color 0.5s; */
+    }
+    
+    #ulbtn:hover{
+    	background-color:yellow;
+    	color:black;
+    }
 </style>
 </head>
 <body class="host_version">
@@ -215,7 +239,7 @@ td, th {
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">Course </a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<form action="../lectures" method="post">
+								<form action="../lectures/list" method="post">
 									<table>
 										<tr>
 											<td><input type="submit" class="dropdown-item"
@@ -291,7 +315,7 @@ td, th {
 			<!-- end title -->
 			<!-- start core -->
 			<div>
-				<form action="../notice/detail" method="post">
+				<!-- <form action="../notice/detail" method="post"> -->
 					<table class="table">
 						<tr>
 							<th>No.</th>
@@ -310,8 +334,14 @@ td, th {
 							<%} %>
 						</tr>
 						<%} %>
+						<tr>
+						
+						<td></td>
+						<td></td>
+						<td id="btnarea"><button onclick="location.href='writeNotice.jsp'" id="ulbtn">upload</button></td>
+						</tr>
 					</table>
-				</form>
+				<!-- </form> -->
 			</div>
 			<!-- end core -->
 			<br>

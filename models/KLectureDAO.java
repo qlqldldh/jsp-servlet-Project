@@ -2,6 +2,7 @@ package models;
 
 import java.sql.*;
 import java.util.ArrayList;
+import models.Pair;
 
 public class KLectureDAO {
 	Connection conn=null;
@@ -13,17 +14,32 @@ public class KLectureDAO {
 		if(pstmt!=null) pstmt.close();
 	}
 	
+	public int getNewLecno() throws SQLException{
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select lecno from klecture order by lecno desc");
+		rs=pstmt.executeQuery();
+		
+		int ret = 0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret+1;
+	}
+	
 	public int insert(KLectureVO klv) throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("insert into klecture values(?,?,?,?,?,?,?)");
+		pstmt=conn.prepareStatement("insert into klecture values(?,?,?,?,?)");
 		
-		pstmt.setInt(1, klv.getLecno());
+		pstmt.setInt(1, klv.getLecno()); // from 'getNewLecno()'
 		pstmt.setString(2, klv.getName());
-		pstmt.setString(3, klv.getForWho());
-		pstmt.setString(4, klv.getIsFree());
-		pstmt.setInt(5, klv.getLecDur());
-		pstmt.setInt(6, klv.getKtno());
-		pstmt.setString(7, klv.getCrsName());
+		pstmt.setInt(3, klv.getLecDur());
+		pstmt.setInt(4, klv.getKtno()); // from kteacher or kostapeople table
+		pstmt.setString(5, klv.getCrsName()); // from session binding course name
 		int ret = pstmt.executeUpdate();
 		Close();
 		ConnectionHelper.CloseConn(conn);
@@ -59,6 +75,43 @@ public class KLectureDAO {
 			if(rs.getString(1)!=null && crs.equals(rs.getString(1)))
 				ret.add(rs.getString(2));
 		}
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret;
+	}
+	
+	public ArrayList<Pair> selectPairByCrs(String crs) throws SQLException{
+		ArrayList<Pair> ret = new ArrayList<>();
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select l.name as lecname, ktt.name as ktname from klecture l join (select kt.kteacherno, kos.name from kteacher kt join kostapeople kos on kos.id=kt.ktid) ktt on ktt.kteacherno=l.ktno where l.crsname=?");
+		pstmt.setString(1, crs);
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ret.add(new Pair(rs.getString(1),rs.getString(2))); // first : lecname / second : teacher name
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret;
+	}
+	
+	public int getLecNo(String lecname, String ktname) throws SQLException{
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select lecno, l.name from (select kp.name, kt.kteacherno from kostapeople kp join kteacher kt on kp.id=kt.ktid where name=?) t " + 
+				"join klecture l on t.kteacherno=l.ktno where l.name=?");
+		pstmt.setString(1, ktname);
+		pstmt.setString(2, lecname);
+		
+		rs=pstmt.executeQuery();
+		
+		int ret = 0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+		}
+		
 		Close();
 		ConnectionHelper.CloseConn(conn);
 		

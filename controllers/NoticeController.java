@@ -43,6 +43,16 @@ public class NoticeController extends HttpServlet {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		} else if(request.getRequestURI().equals("/kostaProject/notice/write")) {
+			String ntitle = request.getParameter("ntitle");
+			String ncontent = request.getParameter("ncontent");
+			try {
+				System.out.println(ntd.insert(new NoticeVO(ntitle,ncontent))+" inserted");
+				response.sendRedirect("list");
+			} catch (SQLException e) {
+				// TODO: handle exception
+			}
+			
 		}
 	}
 

@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="java.util.ArrayList" %>
  
-<%!
-   ArrayList uq;
-%>
  
 <!DOCTYPE html>
 <html lang="ko-kr">
@@ -46,6 +43,17 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+    <script> 
+    function btn(){ 
+        alert('완료 되었습니다.');
+        } 
+    </script>
+    <script>
+    function fnMove(seq){
+        var offset = $("#div" + seq).offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+    }
+    </script>
     <script>
     $(document).ready(function(){
           <%if(session.getAttribute("id")!=null){%>
@@ -53,44 +61,47 @@
              $("#logbut").attr("data-toggle","#");
              $("#logbut").attr("href","../people/login");
              $('#logspn').html("LogOut");
-             
-             $('#btnarea').html("<button onclick=\"location.href='writeQ.jsp'\" id=\"ulbtn\">upload</button>");
-              /* $('#ulbtn').attr("onclick","location.href='writeQ.jsp'");
-              $('#ulbtn').html("upload"); */
           <%} else{%>
              $("#logbut").attr("data-target","#login");
             $("#logbut").attr("data-toggle","modal");
             $("#logbut").attr("href","#");
             $('#logspn').html("LogIn");
-            $('#btnarea').html("");
-            /* $('#ulbtn').attr("onclick","");
-            $('#ulbtn').html(""); */
           <%}%>
           
-          <%uq=(ArrayList)session.getAttribute("uploadq");%>
        });
     </script>
     <style>
-    td, th{
-       text-align:center;
-    }
-    #ulbtn{
-    	margin-top:15px;
-    	width:100px;
-    	height:40px;
-    	border-style:solid;
-    	border-radius:8px;
-    	
-    	background-color:green;
-    	color:white;
-    	transition:0.5s;
-    	/* transition:color 0.5s; */
-    }
-    
-    #ulbtn:hover{
-    	background-color:yellow;
-    	color:black;
-    }
+        #sub{
+             margin-right:-4px; 
+            border: 1px solid skyblue; 
+             background-color: rgba(0,0,0,0); 
+             color: skyblue; padding: 5px;
+ 
+            width: 70px;
+         } 
+         #sub:hover {
+        color:white; background-color: skyblue;
+        }
+        #tb1{
+            margin: auto;
+            text-align: center;
+            width: 800px;
+        }
+        #tb2{
+            width: 200px;
+        }
+        h2 {
+        color: blue;
+        }
+        
+        .wrltitle{
+        	padding-bottom:40px;
+        }
+        #wllecname{
+        	border-style:solid;
+        	width:500px;
+        	height:50px;
+        }
     </style>
 </head>
 <body class="host_version"> 
@@ -241,10 +252,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Community </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
                                 <a class="dropdown-item" href="../question/list">Upload Question </a>
-                                <a class="dropdown-item" href="blog.html">Request Lectures</a>
+                                <a class="dropdown-item" href="blog.html">Request Lectures/Options</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../notice/list">Notice</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../notice/list">Question</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Help </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -261,53 +272,56 @@
         </nav>
     </header>
     <!-- End header -->
-    
     <div class="all-title-box">
-        <div class="container text-center">
-            <h1>Question<span class="m_1">질문 올리기</span></h1>
-        </div>
-    </div>
+		<div class="container text-center">
+			<h1>Upload Lectures<span class="m_1">Upload a Lecture following these form.</span></h1>
+		</div>
+	</div>
+    <br><br><br>
+    <!-- ================================ start core =========================================== -->
+    <form action="../lectures/write" method="post"> <!--  form start  -->
+    <div id="tb1" class="wrltitle"><font size="30px">Lecture Name</font><br><br><input type="text" name="wllecname" id="wllecname" placeholder="type lecture name"></div>
+    <div id="tb1">
+           <button type="button" class="btn" onclick="fnMove('0')">교육일정</button>
+           <button type="button" class="btn" onclick="fnMove('1')">교육목표</button>
+           <button type="button" class="btn" onclick="fnMove('2')">교육내용</button>
+           <button type="button" class="btn" onclick="fnMove('3')">교육대상</button>
+           <button type="button" class="btn" onclick="fnMove('4')">문의센터</button>
+              </div><br><br><br>
+      <div class="tab2" style="padding-left: 100px; padding-right:100px;" >
+      
+    <div id="div0"><h2><b>교육일정</b></h2><br></div><hr color="blue" style="padding: 1px">
+    <table>
+        <tr>
+            <td><input type="text" placeholder="YY/MM/DD" name="wlstartdate"></td>
+            <td style="padding-left: 150px"><input type="text" name="wlloc" placeholder="Location"></td>
+            <td style="padding-left: 200px">강사 <%=session.getAttribute("id") %></td>
+            <td style="padding-left: 400px">
+            <input type="submit" id="sub" value="upload"></td>
+        </tr>
+        
+        <tr>
+        <td>
+        <input type="text" placeholder="수업시간적어주세요" name="wllecdur">
+        </td>
+        </tr>
+    </table>
+        <hr color="blue" style="padding: 1px"><br>
+       <div id="div1"><h2><b>교육목표</b></h2></div>
+       <textarea rows="4" cols="100" placeholder="내용" name="wlpurpose"></textarea><hr><br>
+   <div id="div2">    <h2><b>교육내용</b></h2></div>
+    <textarea rows="4" cols="100" placeholder="내용" name="wlcontents"></textarea><br><hr>
     
-    <div id="overviews" class="section wb">
-        <div class="container">
-            <div class="section-title row text-center">
-                <div class="col-md-8 offset-md-2">
-                    <p class="lead">Upload Question</p>
-                </div>
-            </div><!-- end title -->
-     <!-- ===================================start core=================================== -->
-    <div>
-       <table class="table">
-          <tr>
-             <th>No.</th>
-             <th>Lecture</th>
-             <th>Question</th>
-             <th>id</th>
-             <th>date</th>
-          </tr>
-             <% ArrayList<String> temp;
-    		for(int i=0;i<uq.size();i++){  temp=(ArrayList<String>)uq.get(i);%>
-						<tr>
-							<%for(int j=0;j<temp.size();j++) { if(j==2){%>
-							<td><a href="../question/detail?uqdet=<%=temp.get(j) %>"><%=temp.get(j) %></a>
-								<%} else{%>
-							<td><%=temp.get(j) %></td>
-							<%} %>
-							<%} %>
-						</tr>
-						<%} %>
-						<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td id="btnarea"><button onclick="location.href='writeQ.jsp'" id="ulbtn">upload</button></td>
-						</tr>
-       </table>
-    </div>
-    <!-- ===================================end core=================================== -->
-    <br><br>
-    <!-- <div class="parallax section dbcolor">
+    <div id="div3"><h2><b>교육대상</b></h2></div><br>
+    <textarea rows="8" cols="100" placeholder="대상자" name="wlktarget"></textarea><br><hr><br>
+    </form> <!-- form end -->
+    
+    <div id="div4"><h2><b>문의센터</b></h2></div><br>
+    [판교 교육장] 재직자:031-606-9319, 채용예정자:031-606-9316<br>
+    [가산 교육장] 재직자:02-6278-9353, 채용예정자:02-6278-9352<br><br><br><br>
+</div>
+    <!-- ================================= end core =================================== -->
+    <div class="parallax section dbcolor">
         <div class="container">
             <div class="row logos">
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
@@ -328,10 +342,10 @@
                 <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
                     <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"></a>
                 </div>
-            </div>end row
+            </div><!-- end row -->
             
-        </div>end container
-    </div>end section -->
+        </div><!-- end container -->
+    </div><!-- end section -->
  
     <footer class="footer">
         <div class="container">
@@ -399,7 +413,6 @@
     </div><!-- end copyrights -->
  
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-
  
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>

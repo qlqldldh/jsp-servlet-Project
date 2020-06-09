@@ -15,10 +15,10 @@ public class NoticeDAO {
 	
 	public int insert(NoticeVO nv) throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("insert into notice values(?,?,?)");
+		pstmt=conn.prepareStatement("insert into notice values(?,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'),?)");
 		String[] strs = nv.toString().split(",");
 		
-		for(int i=1;i<=3;i++) pstmt.setString(i, strs[i-1]);
+		for(int i=1;i<=2;i++) pstmt.setString(i, strs[i-1]);
 		int ret = pstmt.executeUpdate();
 		
 		Close();
@@ -30,7 +30,7 @@ public class NoticeDAO {
 	public ArrayList selectList() throws SQLException{
 		ArrayList ret = new ArrayList();
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("select rownum, title,uldate from (select * from notice order by uldate)");
+		pstmt=conn.prepareStatement("select rownum, title,uldate from (select * from notice order by uldate desc)");
 		rs=pstmt.executeQuery();
 		
 		ArrayList<String> temp;

@@ -2,8 +2,14 @@ package models;
 
 public class NoticeVO {
 	private String title;
-	private String update;
 	private String contents;
+	
+	public NoticeVO() {}
+	
+	public NoticeVO(String title, String contents) {
+		this.title=title;
+		this.contents=contents;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -11,12 +17,12 @@ public class NoticeVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getUpdate() {
-		return update;
-	}
-	public void setUpdate(String update) {
-		this.update = update;
-	}
+//	public String getUpdate() {
+//		return update;
+//	}
+//	public void setUpdate(String update) {
+//		this.update = update;
+//	}
 	public String getContents() {
 		return contents;
 	}
@@ -26,7 +32,7 @@ public class NoticeVO {
 	
 	@Override
 	public String toString() {
-		return title + "," + update + "," + contents;
+		return title + "," +contents;
 	}
 	
 }

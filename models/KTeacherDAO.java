@@ -77,13 +77,35 @@ public class KTeacherDAO {
 	
 	public int getNewTeacherNumber() throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("select ktid from kteacher");
+		pstmt=conn.prepareStatement("select kteacherno from kteacher order by kteacherno desc");
 		rs=pstmt.executeQuery();
-		int ret=1000;
-		while(rs.next()) ret+=1;
+		int ret=0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
 		
 		Close();
 		ConnectionHelper.CloseConn(conn);
+		return ret + 1;
+	}
+	
+	public int getKtnoById(String id) throws SQLException{
+		conn = ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select kteacherno from kteacher where ktid=?");
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		int ret = 0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
+		
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
 		return ret;
 	}
 }

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.ArrayList, models.*" %>
 
 <%
-	ArrayList<String> lTitles = (ArrayList<String>)session.getAttribute("lecs");
-	ArrayList<String> lContents = (ArrayList<String>)session.getAttribute("lconts");
+	ArrayList<Pair> lTitles = (ArrayList<Pair>)session.getAttribute("lecs"); // klecture table
+	ArrayList<Integer> lecNos = (ArrayList<Integer>)session.getAttribute("lecnos"); // kboard table
 %>
 
 <!DOCTYPE html>
@@ -53,14 +53,35 @@
  				$("#logbut").attr("data-toggle","#");
  				$("#logbut").attr("href","../people/login");
  				$('#logspn').html("LogOut");
+ 				
+ 				<%if(new KTeacherDAO().isTeacherData((String)session.getAttribute("id"))){  %>
+ 					$("#bt1").html("<button id=\"upbt1\"  value=\"upload\" onclick=\"location.href='writeLecture.jsp'\">upload</button>");
+ 				<%} else{%>
+ 					$("#bt1").html("");
+ 				<%}%>
  			<%} else{%>
  				$("#logbut").attr("data-target","#login");
 				$("#logbut").attr("data-toggle","modal");
 				$("#logbut").attr("href","#");
 				$('#logspn').html("LogIn");
+				$("#bt1").html("");
  			<%}%>
  		});
  	</script>
+ 	
+ 	<style>
+ 	#upbt1     {
+             margin-right:-4px; 
+            border: 1px solid skyblue; 
+             background-color: rgba(0,0,0,0); 
+             color: skyblue; padding: 5px;
+ 
+            width: 70px;
+         } 
+         #upbt1:hover {
+        color:white; background-color: skyblue;
+        }
+ 	</style>
 </head>
 <body class="host_version"> 
 
@@ -184,7 +205,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            	<form action="../lectures" method="post">
+                            	<form action="../lectures/list" method="post">
                                 <table>
                                     <tr>
                                         <td><input type="submit" class="dropdown-item" value="SOA" name="crs"></td>
@@ -245,7 +266,9 @@
                     <p class="lead">In this Course, Each Lectures will teach many contents related to this course.<br>Join and Learn now!</p>
                 </div>
             </div><!-- end title -->
-
+			<div id="bt1" align="right">
+           <button id="upbt1"  value="upload" onclick="location.href='writeLecture.jsp'">upload</button>
+           </div>
             <hr class="invis"> 
 				<!-- start ==================================================================================== -->
             <div class="row"> 
@@ -257,10 +280,10 @@
 						</div>
 						<div class="course-br">
 							<div class="course-title">
-								<h2><a href="#" title=""><%=lTitles.get(i) %></a></h2>
+								<h2><a href="../lectures/detail?lcno=<%=lecNos.get(i) %>" title=""><%=lTitles.get(i).first %></a></h2>
 							</div>
 							<div class="course-desc">
-								<p><%=lContents.get(i) %> </p>
+								<p><%=lTitles.get(i).second %> </p>
 							</div>
 							<div class="course-rating">
 								4.5

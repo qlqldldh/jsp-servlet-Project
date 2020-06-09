@@ -16,12 +16,30 @@ public class KBoardDAO {
 		if(pstmt!=null) pstmt.close();
 	}
 	
+	public int getNewBoardno() throws SQLException{
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select boardno from kboard order by boardno desc");
+		rs=pstmt.executeQuery();
+		
+		int ret = 0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		System.out.println(ret);
+		return ret + 1;
+	}
+	
+	
 	public int insert(KBoardVO kbv) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("insert into kboard values(?,?,?,?,?,?,?)");
 		
-		pstmt.setInt(1, kbv.getBoardNo());
-		pstmt.setInt(2, kbv.getLecno());
+		pstmt.setInt(1, kbv.getBoardNo()); // from 'getNewBoardno()'
+		pstmt.setInt(2, kbv.getLecno()); // from klecture table (lecno)
 		pstmt.setString(3, kbv.getStartDate());
 		pstmt.setString(4, kbv.getLoc());
 		pstmt.setString(5, kbv.getPurpose());
@@ -47,6 +65,24 @@ public class KBoardDAO {
 			for(int i=1;i<=7;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret;
+	}
+	
+	public ArrayList<String> selectByLecno(int lecno) throws SQLException{
+		ArrayList<String> ret = new ArrayList<>();
+		
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select kb.startdate, kb.loc, kl.ktno,kl.lecdur,kb.purpose,kb.contents,kb.ktarget from kboard kb join klecture kl on kb.lecno=kl.lecno where kl.lecno=?");
+		pstmt.setInt(1, lecno);
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			for(int i=1;i<=7;i++) ret.add(rs.getString(i));
+		}
+		
 		Close();
 		ConnectionHelper.CloseConn(conn);
 		

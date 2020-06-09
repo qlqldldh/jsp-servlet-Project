@@ -4,6 +4,18 @@ public class KBoardVO {
 	private int boardNo, lecno;
 	private String startDate, loc, purpose, contents, ktarget;
 	
+	public KBoardVO() {}
+	
+	public KBoardVO(int boardNo, int lecno, String startDate, String loc, String purpose, String contents, String ktarget) {
+		this.boardNo = boardNo;
+		this.lecno = lecno;
+		this.startDate = startDate;
+		this.loc = loc;
+		this.purpose = purpose;
+		this.contents = contents;
+		this.ktarget = ktarget;
+	}
+	
 	public int getBoardNo() {
 		return boardNo;
 	}

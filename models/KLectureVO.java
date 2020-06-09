@@ -2,8 +2,18 @@ package models;
 
 public class KLectureVO {
 	private int lecno;
-	private String name, forWho, isFree, crsName;
+	private String name, crsName;
 	private int lecDur,ktno;
+	
+	public KLectureVO() {}
+	
+	public KLectureVO(int lecno, String name, int lecDur, int ktno, String crsName) {
+		this.lecno = lecno;
+		this.name = name;
+		this.lecDur = lecDur;
+		this.ktno = ktno;
+		this.crsName = crsName;
+	}
 	
 	public int getLecno() {
 		return lecno;
@@ -16,18 +26,6 @@ public class KLectureVO {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getForWho() {
-		return forWho;
-	}
-	public void setForWho(String forWho) {
-		this.forWho = forWho;
-	}
-	public String getIsFree() {
-		return isFree;
-	}
-	public void setIsFree(String isFree) {
-		this.isFree = isFree;
 	}
 	
 	public String getCrsName() {
@@ -66,7 +64,7 @@ public class KLectureVO {
 	
 	@Override
 	public String toString() {
-		return lecno + "," + name + "," + forWho + "," + isFree
+		return lecno + "," + name
 				+ "," + crsName + "," + lecDur + "," + ktno;
 	}
 }

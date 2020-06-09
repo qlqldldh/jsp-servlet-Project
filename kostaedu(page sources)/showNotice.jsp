@@ -244,7 +244,7 @@ td, th {
 							class="nav-link dropdown-toggle" href="#" id="dropdown-a"
 							data-toggle="dropdown">Course </a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<form action="../lectures" method="post">
+								<form action="../lectures/list" method="post">
 									<table>
 										<tr>
 											<td><input type="submit" class="dropdown-item"

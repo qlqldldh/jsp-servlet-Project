@@ -13,10 +13,7 @@ import models.*;
 import javax.servlet.http.HttpSession;
 
 
-/**
- * Servlet implementation class TestServvlet
- */
-@WebServlet("/lectures")
+@WebServlet("/lectures/*")
 public class LectureController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,19 +25,61 @@ public class LectureController extends HttpServlet {
 		KBoardDAO kbd = new KBoardDAO();
 		HttpSession session = request.getSession();
 		
-		String courseName = request.getParameter("crs");
-		//System.out.println(courseName); // for test
+		if (request.getRequestURI().equals("/kostaProject/lectures/list")) {
+			String courseName = request.getParameter("crs")==null?(String)session.getAttribute("crs"):request.getParameter("crs");
 
-		try {
-			ArrayList<String> lecs = kld.selectNameByCrs(courseName);
-			ArrayList<String> lconts = new ArrayList<>();
-			for(int i=0;i<lecs.size();i++) lconts.add(kbd.selectContentByLec(lecs.get(i)));
-//			System.out.println(courseName);
-			session.setAttribute("lecs", lecs);
-			session.setAttribute("lconts", lconts);
-			response.sendRedirect("kostaedu/course-grid-2.jsp");
-		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				ArrayList<Pair> lecs = kld.selectPairByCrs(courseName);
+				ArrayList<Integer> lecnos = new ArrayList<>();
+				
+				for(int i=0;i<lecs.size();i++) lecnos.add(kld.getLecNo(lecs.get(i).first, lecs.get(i).second));
+				
+				session.setAttribute("lecs", lecs);
+				session.setAttribute("lecnos", lecnos);
+				
+				session.setAttribute("crs", courseName); // writeLecture.jsp에 자동으로 couse name을 가져다 쓸 수 있도록 함. 경우에 따라 지울 수 있음
+				
+				response.sendRedirect("../kostaedu/course-grid-2.jsp");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else if(request.getRequestURI().equals("/kostaProject/lectures/detail")) {
+			int lcno = Integer.parseInt(request.getParameter("lcno"));
+			
+			try {
+				ArrayList<String> bContents = kbd.selectByLecno(lcno);
+				session.setAttribute("bContents", bContents);
+				
+				response.sendRedirect("../kostaedu/showLecture.jsp");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else if(request.getRequestURI().equals("/kostaProject/lectures/write")) {
+			//response.sendRedirect("../kostaedu/index.jsp");
+			try {
+				int lecno = kld.getNewLecno();
+				String wllecname = request.getParameter("wllecname"); // klecture
+				int lecdur = Integer.parseInt(request.getParameter("wllecdur"));
+				int ktno = new KTeacherDAO().getKtnoById((String)session.getAttribute("id"));
+				String crsname = (String)session.getAttribute("crs");
+				
+				kld.insert(new KLectureVO(lecno,wllecname,lecdur,ktno,crsname)); //  klecture table insert
+				
+				
+				int boardno = kbd.getNewBoardno();
+				String wlstartdate = request.getParameter("wlstartdate"); // kboard
+				String wlloc = request.getParameter("wlloc"); // kboard
+				String wlpurpose = request.getParameter("wlpurpose"); // kboard
+				String wlcontents = request.getParameter("wlcontents"); // kboard
+				String wlktarget = request.getParameter("wlktarget"); // kboard
+				
+				kbd.insert(new KBoardVO(boardno,lecno,wlstartdate,wlloc,wlpurpose,wlcontents,wlktarget)); // kboard table insert
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect("list");
 		}
 	}
 
