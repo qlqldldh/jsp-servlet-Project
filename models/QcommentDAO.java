@@ -83,20 +83,43 @@ public class QcommentDAO {
 		return ret;
 	}
 	
-	public int getQueNo() throws SQLException{
+	public int getNewQueNo() throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("select count(*) from qcomment");
+		pstmt=conn.prepareStatement("select queno from qcomment order by queno desc");
 		rs=pstmt.executeQuery();
 		
-		int ret = 30000;
+		int ret = 0;
 		while(rs.next()) {
-			ret+=rs.getInt(1);
+			ret = rs.getInt(1);
+			break;
 		}
 		
 		Close();
 		ConnectionHelper.CloseConn(conn);
 		
 		return ret+1;
+	}
+	
+	public int getQueno(String title, String id, String contents) throws SQLException{ // 여기부터  title, id, contents
+		int ret = 0;
+		
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select queno from qcomment where title=? and id=? and contents=?");
+		pstmt.setString(1, title);
+		pstmt.setString(2, id);
+		pstmt.setString(3, contents);
+		
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ret = rs.getInt(1);
+			break;
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret;
 	}
 	
 	public int delete(String id, String queno) throws SQLException{

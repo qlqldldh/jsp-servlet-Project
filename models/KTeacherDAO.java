@@ -11,16 +11,6 @@ public class KTeacherDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	public KTeacherDAO() {
-//		try {
-//			if(conn==null)
-//				conn=ConnectionHelper.getConn();
-//			System.out.println("KStudent Connection Success");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-	}
-	
 	public void Close() throws SQLException{
 		if(rs!=null) rs.close();
 		if(pstmt!=null) pstmt.close();

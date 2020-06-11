@@ -48,6 +48,7 @@ public class LectureController extends HttpServlet {
 			
 			try {
 				ArrayList<String> bContents = kbd.selectByLecno(lcno);
+				bContents.add(Integer.toString(lcno));
 				session.setAttribute("bContents", bContents);
 				
 				response.sendRedirect("../kostaedu/showLecture.jsp");
@@ -55,7 +56,6 @@ public class LectureController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(request.getRequestURI().equals("/kostaProject/lectures/write")) {
-			//response.sendRedirect("../kostaedu/index.jsp");
 			try {
 				int lecno = kld.getNewLecno();
 				String wllecname = request.getParameter("wllecname"); // klecture
@@ -79,6 +79,19 @@ public class LectureController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			response.sendRedirect("list");
+		} else if(request.getRequestURI().equals("/kostaProject/lectures/uplec")) {
+			int sllecno = Integer.parseInt(request.getParameter("sllecno"));
+			try {
+				if(new KStudentDAO().updateLecNo((String)session.getAttribute("id"), sllecno)>0) {
+					System.out.println("success to enroll lecture");
+				} else {
+					System.out.println("fail to enroll lecture");
+				}
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 			response.sendRedirect("list");
 		}
 	}

@@ -110,36 +110,38 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header tit-up">
+            <div class="modal-header tit-up" align="center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Customer Login</h4>
+                <h4 class="modal-title"><font face="Merriweather-Bold">Login Page</font></h4>
             </div>
             <div class="modal-body customer-box">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" align="center">
-                    <li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-                    <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                    <li><a class="active" href="#Login" data-toggle="tab"><font face="Merriweather-Bold">Sign In</font></a></li>
+                    <li><a href="#Registration" data-toggle="tab"><font face="Merriweather-Bold">Registration</font></a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="Login">
                         <form action="../people/login" method="post" role="form" class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 alignplaceholder">
                                     <input class="form-control" name="id" placeholder="Name" type="text">
+                                    </font>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" name="pwd" placeholder="password" type="password">
+                                    
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                                        Submit
+                                    <font face="Merriweather-Bold"> Submit </font>
                                     </button>
-                                    <a class="for-pwd" href="javascript:;">Forgot your password?</a>
+                                    <a class="for-pwd" href="javascript:;"><font face="Merriweather-Bold">Forgot your password?</font></a>
                                 </div>
                             </div>
                         </form>
@@ -206,7 +208,7 @@
         </div>
     </div>
     <!-- END LOADER -->    
- 
+    
     <!-- Start header -->
     <header class="top-navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -221,12 +223,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbars-host">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">ABOUT US</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.jsp"><font face="Merriweather-Bold">Home</font></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about"><font face="Merriweather-Bold">ABOUT US</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Course</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                               <form action="../lectures/list" method="post">
+                             <form action="../lectures/list" method="post">
                                 <table>
                                     <tr>
                                         <td><input type="submit" class="dropdown-item" value="SOA" name="crs"></td>
@@ -249,23 +251,23 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Community </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Community</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="../question/list">Upload Question </a>
-                                <a class="dropdown-item" href="blog.html">Request Lectures/Options</a>
+                                <a class="dropdown-item" href="../question/list"><font face="Merriweather-Bold">Upload Question</font></a>
+                                <a class="dropdown-item" href="blog.html"><font face="Merriweather-Bold">Request Lectures</font></a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../notice/list">Question</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../notice/list"><font face="Merriweather-Bold">Notice</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Help </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Help</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="FAQ.jsp">FAQ </a>
-                                <a class="dropdown-item" href="Location.html">Location</a>
+                                <a class="dropdown-item" href="FAQ.jsp"><font face="Merriweather-Bold">FAQ</font></a>
+                                <a class="dropdown-item" href="Location.html"><font face="Merriweather-Bold">Location</font></a>
                             </div>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn">LogIn</span></a></li><!-- log button -->
+                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn"><font face="Merriweather-Bold">LogIn</font></span></a></li><!-- log button -->
                     </ul>
                 </div>
             </div>
@@ -319,7 +321,7 @@
     <div id="div4"><h2><b>문의센터</b></h2></div><br>
     [판교 교육장] 재직자:031-606-9319, 채용예정자:031-606-9316<br>
     [가산 교육장] 재직자:02-6278-9353, 채용예정자:02-6278-9352<br><br><br><br>
-</div>
+	</div>
     <!-- ================================= end core =================================== -->
     <div class="parallax section dbcolor">
         <div class="container">

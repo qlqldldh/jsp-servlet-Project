@@ -11,16 +11,6 @@ public class KStudentDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	public KStudentDAO() {
-//		try {
-//			if(conn==null)
-//				conn=ConnectionHelper.getConn();
-//			System.out.println("KStudent Connection Success");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-	}
-	
 	public void Close() throws SQLException{
 		if(rs!=null) rs.close();
 		if(pstmt!=null) pstmt.close();
@@ -59,6 +49,23 @@ public class KStudentDAO {
 		return ret;
 	}
 	
+	public boolean isEnrolled(String id) throws SQLException{
+		boolean ret = false;
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select lecno from kstudent where ksid=?");
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			if(rs.getInt(1)>0) ret=true;
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret;
+	}
+	
 	public boolean isStudData(String id) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("select ksid from kstudent");
@@ -76,13 +83,31 @@ public class KStudentDAO {
 	
 	public int getNewStudNumber() throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("select ksid from kstudent");
+		pstmt=conn.prepareStatement("select kstudid from kstudent order by kstudid desc");
 		rs=pstmt.executeQuery();
-		int ret=100000;
-		while(rs.next()) ret+=1;
+		int ret=0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
 		
 		Close();
 		ConnectionHelper.CloseConn(conn);
+		return ret+1;
+	}
+	
+	public int updateLecNo(String id, int lecno) throws SQLException{ // 수강신청용
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("update kstudent set lecno=? where ksid=?");
+		
+		pstmt.setInt(1, lecno);
+		pstmt.setString(2, id);
+		
+		int ret = pstmt.executeUpdate();
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
 		return ret;
 	}
 }

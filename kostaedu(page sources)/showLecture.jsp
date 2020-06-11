@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.ArrayList, models.*" %>
  
 <% ArrayList<String> bcont = (ArrayList<String>)session.getAttribute("bContents"); %>
  
@@ -56,11 +56,20 @@
              $("#logbut").attr("data-toggle","#");
              $("#logbut").attr("href","../people/login");
              $('#logspn').html("LogOut");
+              <%if(new KStudentDAO().isStudData((String)session.getAttribute("id")) && !(new KStudentDAO().isEnrolled((String)session.getAttribute("id")))){%>
+              	$("#sugang").attr("onclick","alert('success tp enroll lecture!'); location.href='../lectures/uplec?sllecno=<%=bcont.get(7)%>'");
+              	$("#sugang").html("수강신청");
+              <%} else{%>
+              	$("#sugang").attr("onclick","");
+              	$("#sugang").html("신청불가");
+              <%}%>
           <%} else{%>
              $("#logbut").attr("data-target","#login");
             $("#logbut").attr("data-toggle","modal");
             $("#logbut").attr("href","#");
             $('#logspn').html("LogIn");
+            $("#sugang").attr("onclick","");
+            $("#sugang").html("신청불가");
           <%}%>
           
        });
@@ -86,36 +95,38 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header tit-up">
+            <div class="modal-header tit-up" align="center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Customer Login</h4>
+                <h4 class="modal-title"><font face="Merriweather-Bold">Login Page</font></h4>
             </div>
             <div class="modal-body customer-box">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" align="center">
-                    <li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-                    <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                    <li><a class="active" href="#Login" data-toggle="tab"><font face="Merriweather-Bold">Sign In</font></a></li>
+                    <li><a href="#Registration" data-toggle="tab"><font face="Merriweather-Bold">Registration</font></a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="Login">
                         <form action="../people/login" method="post" role="form" class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 alignplaceholder">
                                     <input class="form-control" name="id" placeholder="Name" type="text">
+                                    </font>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" name="pwd" placeholder="password" type="password">
+                                    
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                                        Submit
+                                    <font face="Merriweather-Bold"> Submit </font>
                                     </button>
-                                    <a class="for-pwd" href="javascript:;">Forgot your password?</a>
+                                    <a class="for-pwd" href="javascript:;"><font face="Merriweather-Bold">Forgot your password?</font></a>
                                 </div>
                             </div>
                         </form>
@@ -182,7 +193,7 @@
         </div>
     </div>
     <!-- END LOADER -->    
- 
+    
     <!-- Start header -->
     <header class="top-navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -197,12 +208,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbars-host">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">ABOUT US</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.jsp"><font face="Merriweather-Bold">Home</font></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about"><font face="Merriweather-Bold">ABOUT US</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Course</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                               <form action="../lectures/list" method="post">
+                             <form action="../lectures/list" method="post">
                                 <table>
                                     <tr>
                                         <td><input type="submit" class="dropdown-item" value="SOA" name="crs"></td>
@@ -225,30 +236,31 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Community </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Community</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="../question/list">Upload Question </a>
-                                <a class="dropdown-item" href="blog.html">Request Lectures/Options</a>
+                                <a class="dropdown-item" href="../question/list"><font face="Merriweather-Bold">Upload Question</font></a>
+                                <a class="dropdown-item" href="blog.html"><font face="Merriweather-Bold">Request Lectures</font></a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../notice/list">Question</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../notice/list"><font face="Merriweather-Bold">Notice</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Help </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Help</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="FAQ.jsp">FAQ </a>
-                                <a class="dropdown-item" href="Location.html">Location</a>
+                                <a class="dropdown-item" href="FAQ.jsp"><font face="Merriweather-Bold">FAQ</font></a>
+                                <a class="dropdown-item" href="Location.html"><font face="Merriweather-Bold">Location</font></a>
                             </div>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn">LogIn</span></a></li><!-- log button -->
+                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn"><font face="Merriweather-Bold">LogIn</font></span></a></li><!-- log button -->
                     </ul>
                 </div>
             </div>
         </nav>
-    </header><br><br><br>
+    </header>
     <!-- End header -->
     <!-- ------------------메인내용시작 -->
+    <br><br>
     <div id="tb1">
            <button type="button" class="btn" onclick="fnMove('0')">교육일정</button>
            <button type="button" class="btn" onclick="fnMove('1')">교육목표</button>
@@ -263,7 +275,7 @@
             <td align ="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=bcont.get(0) %></td> <!-- kboard -- startdate -->
             <td style="padding-left: 150px"><%=bcont.get(1) %></td> <!-- kboard -- loc -->
             <td style="padding-left: 200px">강사 <%=bcont.get(2)%></td> <!-- klecture -- ktno --> <!-- need to modify kteacherno to kt.name -->
-            <td style="padding-left: 400px"><input type="button" value="수강 신청" name="submit"></td> <!-- 수강신쳥에 필요한 테이블 구성 or 테이블 column 재구성 -->
+            <td style="padding-left: 400px"><button id="sugang" onclick="alert('success tp enroll lecture!'); location.href='../lectures/uplec?sllecno=<%=bcont.get(7)%>'">수강신청</button></td> <!-- 수강신쳥에 필요한 테이블 구성 or 테이블 column 재구성 -->
         </tr>
         
         <tr>
@@ -274,14 +286,12 @@
     </table>
         <hr color="blue" style="padding: 1px"><br>
        <div id="div1"><h2><b>교육목표</b></h2><br></div> <!-- kboard -- purpose -->
-       <%=bcont.get(4) %><hr><br>
+       <pre><%=bcont.get(4) %></pre><hr><br>
    <div id="div2">    <h2><b>교육내용</b></h2></div><br><br> <!-- kboard -- contents -->
-    <pre>
-    <%=bcont.get(5) %></pre> <hr><br>
+    <pre><%=bcont.get(5) %></pre> <hr><br>
     
     <div id="div3"><h2><b>교육대상</b></h2></div><br> <!-- kboard -- ktarget -->
-    <pre>
-    <%=bcont.get(6) %></pre><hr><br>
+    <pre><%=bcont.get(6) %></pre><hr><br>
     
     <div id="div4"><h2><b>문의센터</b></h2></div><br>
     [판교 교육장] 재직자:031-606-9319, 채용예정자:031-606-9316<br>

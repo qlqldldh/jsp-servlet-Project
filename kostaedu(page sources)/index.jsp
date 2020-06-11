@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>KostaEDU - Education Responsive HTML5 Template</title>
+    <title>KostaEDU</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -39,21 +39,39 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
- 	<script>
- 	$(document).ready(function(){
- 			<%if(session.getAttribute("id")!=null){%>
- 				$("#logbut").attr("data-target","#");
- 				$("#logbut").attr("data-toggle","#");
- 				$("#logbut").attr("href","../people/login");
- 				$('#logspn').html("LogOut");
- 			<%} else{%>
- 				$("#logbut").attr("data-target","#login");
-				$("#logbut").attr("data-toggle","modal");
-				$("#logbut").attr("href","#");
-				$('#logspn').html("LogIn");
- 			<%}%>
- 		});
- 	</script>
+  <script>
+  $(document).ready(function(){
+    <%if(session.getAttribute("id")!=null){%>
+     $("#logbut").attr("data-target","#");
+     $("#logbut").attr("data-toggle","#");
+     $("#logbut").attr("href","../people/login");
+     $('#logspn').html("LogOut");
+    <%} else{%>
+     $("#logbut").attr("data-target","#login");
+    $("#logbut").attr("data-toggle","modal");
+    $("#logbut").attr("href","#");
+    $('#logspn').html("LogIn");
+    <%}%>
+   });
+  </script>
+  <style>
+      #ft1, #ft2, #ft3{
+      line-height: 10px;
+      }
+      
+       #rep{
+       padding-left: 50px;
+       padding-bottom: 100px;
+       }
+       #msg{
+       padding-right: 50px;
+       }
+       
+       #msg1{
+       padding-left: 50px;
+       }
+    
+    </style>
 </head>
 <body class="host_version"> 
  
@@ -61,36 +79,38 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header tit-up">
+            <div class="modal-header tit-up" align="center">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Customer Login</h4>
+                <h4 class="modal-title"><font face="Merriweather-Bold">Login Page</font></h4>
             </div>
             <div class="modal-body customer-box">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" align="center">
-                    <li><a class="active" href="#Login" data-toggle="tab">Login</a></li>
-                    <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                    <li><a class="active" href="#Login" data-toggle="tab"><font face="Merriweather-Bold">Sign In</font></a></li>
+                    <li><a href="#Registration" data-toggle="tab"><font face="Merriweather-Bold">Registration</font></a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="Login">
                         <form action="../people/login" method="post" role="form" class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 alignplaceholder">
                                     <input class="form-control" name="id" placeholder="Name" type="text">
+                                    </font>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" name="pwd" placeholder="password" type="password">
+                                    
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
-                                        Submit
+                                    <font face="Merriweather-Bold"> Submit </font>
                                     </button>
-                                    <a class="for-pwd" href="javascript:;">Forgot your password?</a>
+                                    <a class="for-pwd" href="javascript:;"><font face="Merriweather-Bold">Forgot your password?</font></a>
                                 </div>
                             </div>
                         </form>
@@ -172,12 +192,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbars-host">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">ABOUT US</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.jsp"><font face="Merriweather-Bold">Home</font></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about"><font face="Merriweather-Bold">ABOUT US</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Course</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            	<form action="../lectures/list" method="post">
+                             <form action="../lectures/list" method="post">
                                 <table>
                                     <tr>
                                         <td><input type="submit" class="dropdown-item" value="SOA" name="crs"></td>
@@ -200,23 +220,23 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Community </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Community</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="../question/list">Upload Question</a>
-                                <a class="dropdown-item" href="blog.html">Request Lectures</a>
+                                <a class="dropdown-item" href="../question/list"><font face="Merriweather-Bold">Upload Question</font></a>
+                                <a class="dropdown-item" href="blog.html"><font face="Merriweather-Bold">Request Lectures</font></a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../notice/list">Notice</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../notice/list"><font face="Merriweather-Bold">Notice</font></a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Help </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><font face="Merriweather-Bold">Help</font></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                <a class="dropdown-item" href="FAQ.jsp">FAQ </a>
-                                <a class="dropdown-item" href="Location.html">Location</a>
+                                <a class="dropdown-item" href="FAQ.jsp"><font face="Merriweather-Bold">FAQ</font></a>
+                                <a class="dropdown-item" href="Location.html"><font face="Merriweather-Bold">Location</font></a>
                             </div>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn">LogIn</span></a></li><!-- log button -->
+                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login" id="logbut"><span id="logspn"><font face="Merriweather-Bold">LogIn</font></span></a></li><!-- log button -->
                     </ul>
                 </div>
             </div>
@@ -241,9 +261,7 @@
                                     <div class="big-tagline">
                                         <h2><strong>KostaEDU </strong> Software Education</h2>
                                         <p class="lead">기술진흥 , 인력양성의 대표기관 KOSTA - SW시장 글로벌화 , SW기술 고도화 , SW정책 인재중심 </p>
-                                            <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#" class="hover-btn-new"><span>Read More</span></a>
+                                            <a href="#Location.html" class="hover-btn-new"><span>Contact Us</span></a>
                                     </div>
                                 </div>
                             </div><!-- end row -->            
@@ -260,9 +278,7 @@
                                     <div class="big-tagline">
                                         <h2 data-animation="animated zoomInRight">KostaEDU <strong><br>Advancement of Software</strong></h2>
                                         <p class="lead" data-animation="animated fadeInLeft">대한민국 IT 산업의 새로운 미래를 여는 한국소프트웨어기술진흥협회, KOSTA</p>
-                                            <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#" class="hover-btn-new"><span>Read More</span></a>
+                                            <a href="Location.html" class="hover-btn-new"><span>Contact Us</span></a>
                                     </div>
                                 </div>
                             </div><!-- end row -->            
@@ -281,9 +297,7 @@
                                         <p class="lead" data-animation="animated fadeInLeft">
                                         한국소프트웨어기술진흥협회가 함께 만들어 드립니다. 대한민국 소프트웨어 기술진흥 및 인력양성 대표기관으로서 ,<br>소프트웨어 기술 고도화로 한국 IT산업의 새로운 미래를 여는 비전을 실천하고 있습니다.
                                         </p>
-                                            <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#" class="hover-btn-new"><span>Read More</span></a>
+                                            <a href="Location.html" class="hover-btn-new"><span>Contact Us</span></a>
                                     </div>
                                 </div>
                             </div><!-- end row -->            
@@ -304,130 +318,137 @@
             </a>
         </div>
     </div>
-    
+    <br><br><br><br>
     <div id="overviews" class="section wb">
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <h3 id="about">ABOUT US</h3>
+                    <h3 id="about"><font face="a포스터B">ABOUT US</font></h3>
                 </div>
-            </div><!-- end title -->
+                        </div><!-- end title -->
         
             <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="message-box">
-                        <h4>2020 BEST KostaEDU education school</h4>
-                        <h2>Welcome to KostaEDU</h2>
-                        <p>대한민국 소프트웨어 기술진흥 및 인력양성 대표기관으로서
-                            소프트웨어기술 고도화로 한국 IT산업의 새로운 미래를 여는 비전을 실천하고 있습니다.</p>
+                    <div class="message-box" id="msg"><br>
+                        <h4><b>2020 BEST KostaEDU education school</b></h4>
+                        <h2><b>Welcome to KostaEDU</b></h2><br><br>
+                        <p>대한민국 소프트웨어 기술진흥 및 인력양성 대표기관으로서<br><br>
+                            소프트웨어기술 고도화로 한국 IT산업의 새로운 미래를 여는 <br><br>비전을 실천하고 있습니다.</p>
  
-                        <p>저희는 글로벌화 , 고도화 , 인재중심의 비전 및 전략을 갖고있으며,
-                            이를 실행하기 위해 기술진흥,교육훈련,인재인증을 하는 방식으로 운영하고있습니다.</p>
+                        <p>저희는 글로벌화 , 고도화 , 인재중심의 비전 및 전략을 갖고있으며,<br><br>
+                            이를 실현하기 위해 기술진흥 , 교육훈련 , 인재인증을 하는 <br><br>방식으로 운영하고있습니다.</p>
+                            <br><br><br>
  
-                        <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
                 
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
-                        <img src="images/rep-img-1.jpg" alt="" class="img-fluid img-rounded">
+                        <img src="images/rep-img-1.jpg" alt="" class="img-fluid img-rounded" id="rep">
                     </div><!-- end media -->
                 </div><!-- end col -->
             </div>
             <div class="row align-items-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="post-media wow fadeIn">
-                        <img src="images/kostaplan.jpg" alt="" class="img-fluid img-rounded">
+                        <img src="images/article1.PNG" alt="" class="img-fluid img-rounded" style="padding-right: 50px;">
                     </div><!-- end media -->
                 </div><!-- end col -->
                 
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="message-box">
-                        <h4>2020 PREMIUM KostaEDU education & Certification</h4>
-                        <h2>Information for Premium Education of Kosta</h2>
-                        <img src="images/article1.PNG" width="547" height="185">
-                        <br><a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
+                    <div class="message-box" id="msg1">
+                        <h3><font face="Merriweather-Bold"><b>2020 PREMIUM KostaEDU education & Certification</b></font></h3>
+                        <h4><font face="Merriweather-Bold"><b>Information for Premium Education of Kosta</b></font></h4><br>
+                        <font face="NotoSansKR-Medium">
+                           신입인력 고용＇채용, 채용박람회,SW경진대회<br><br>
+                     SW아키텍트자격인증(KCSA)<br><br>
+                     SW분석설계자격인증(KCSM)<br><br>
+                     SW기술능력평가시험(KCSE)<br>
+                     <br><br></font>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
                 
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
- 
+ <br><br><br><br>
     <section class="section lb page-section">
         <div class="container">
              <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <font size="7">OUR HISTORY</font>
-                    <p class="lead">대한민국 소프트웨어 기술진흥 및 인력양성 대표기관으로서<br>소프트웨어 기술의 고도화로 한국 IT산업의 비전을 실현하고 있습니다.<br>
+                    <font size="7"><font face="a포스터B">OUR HISTORY</font><br>
+                    <br>
+                    <p class="lead"><font face="NotoSansKR-Medium">대한민국 소프트웨어 기술진흥 및 인력양성 대표기관으로서<br><br>소프트웨어 기술의 고도화로 한국 IT산업의 비전을 실현하고 있습니다.<br><br>
  
-저희는 소프트웨어 시장의 글로벌화 , 고도화 , 인재중심의 비전 및 전략을 갖고있으며,<br>이를 실행하기 위해 기술진흥 , 교육훈련 , 역량평가를 하는 방식으로 운영하고있습니다.</p>
+저희는 소프트웨어 시장의 글로벌화 , 고도화 , 인재중심의 비전 및 전략을 갖고있으며,<br><br>이를 실행하기 위해 기술진흥 , 교육훈련 , 역량평가를 하는 방식으로 운영하고있습니다.</font></p>
                 </div>
             </div><!-- end title -->
+            <br>
             <div class="timeline">
                 <div class="timeline__wrap">
                     <div class="timeline__items">
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-01">
                                 <h2>2016</h2>
-                                <p>IoT & 디지털 경영포럼 창립 , SW역량 및 품질간담회 발족.</p>
+                                <p><font face="Merriweather-Bold">IoT & 디지털 경영포럼 창립, SW역량 및 품질간담회 발족</font></p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-02">
                                 <h2>2015</h2>
-                                <p>-일학습병형제 경기지역 특구지원센터지정<br>
-                                    -비지니스애널리스트 포럼(BAPF) 창립.</p>
+                                <p><font face="Merriweather-Bold">- 일학습병형제 경기 지역<br>특구 지원센터 지정<br><br>
+                                   - 비지니스애널리스트 포럼(BAPF) 창립</font></p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-03">
-                                <h2>2014</h2>
-                                <p>-일학습병행제 SC/ 듀얼공동훈련센터 선정<br>
-                                    -산업계 주도 NCS 기반 신자격 정부-산업계 MOU 체결<br>
-                                    -NCS 컨설팅 사업 수행</p>
+                                <h2>2014</h2><br>
+                                <p><font face="Merriweather-Bold">- 일학습병행제<br>SC / 듀얼공동훈련센터 선정<br><br>
+                                    - 산업계 주도 NCS 기반<br>정부 - 산업계 MOU 체결<br><br>
+                                    - NCS 컨설팅 사업 수행</font></p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-04">
                                 <h2>2013 </h2>
-                                <p>-SEMAT KOREA 창립 총회 및 Essence(OMG 방법론 수립 표준)보급.</p>
+                                <p>SEMAT KOREA 창립 총회,<br>OMG 방법론 수립 표준 보급</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-01">
                                 <h2>2011</h2>
-                                <p>-SSPL(Software & System Product Line) 포럼구성<br>
-                                    -SW아키텍트 자격인증(KSCA) 시행.</p>
+                                <p>- SSPL(Software & System Product Line) 포럼 구성<br><br>
+                                   - SW아키텍트 자격 인증<br>(KSCA) 시행</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-02">
                                 <h2>2009</h2>
-                                <p>-고용노동부 교육훈련혁신센터 선정.</p>
+                                <p>고용노동부<br>교육훈련혁신센터 선정</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-03">
                                 <h2>2007</h2>
-                                <p>-고용노동부 국가인적자원개발 컨소시엄 사업 기간선정<br>
-                                    -SW아키텍트포럼 창립 (2008년 SW아키텍트연합회로 재발족)<br>
-                                    -SW개발자 직무 능력 평가시험(KCSE)시행.</p>
+                                <p> - 고용노동부<br>국가인적자원개발<br>컨소시엄 사업 기간선정<br><br>
+                                    - SW아키텍트포럼 창립(2008,<br>SW아키텍트연합회로 재발족)<br><br>
+                                    - SW개발자<br>직무능력 평가시험(KCSE)시행</p>
                             </div>
                         </div>
                         <div class="timeline__item">
                             <div class="timeline__content img-bg-04">
                                 <h2>1999</h2>
-                                <p>-창립 한국소프트웨어컴포넌트 컨소시엄(KCSC) (정보통신부 CBD(컴포넌트)기술개발 사업 ).</p>
+                                <p>-창립 한국소프트웨어컴포넌트 컨소시엄(KCSC)<br><br>정보통신부 CBD(컴포넌트)<br>기술개발 사업</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
     </section>
- 
     <div class="section cl">
+    
         <div class="container">
             <div class="row text-left stat-wrap">
                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -449,12 +470,13 @@
                 </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->
+        <br>
     </div><!-- end section -->
- 
+
     <div id="plan" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Recommended Class</h3>
+                <h3><font face="a포스터B">Recommended Class</font></h3><br>
                 <p>These are high-popular classes in Kosta. Choose one of them whether you wanna receive.  </p>
             </div><!-- end title -->
  
@@ -469,6 +491,7 @@
                 </div><!-- end col -->
             </div>
  
+            
             <hr class="invis">
  
             <div class="row">
@@ -484,14 +507,14 @@
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+                                        <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong>DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>GASAN</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>KIM</strong> TEACHER</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -504,14 +527,14 @@
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+                                      <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong> DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>PANGYO</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>LEE</strong>TEACHER</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -525,14 +548,14 @@
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
+                                  <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong> DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>PANGYO</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>PARK</strong>TEACHER</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -549,15 +572,16 @@
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                            대기업 40 중소 30
+                                            <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong> DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>GASAN</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>KIM</strong>TEACHER</p>
+                                            <p><i class="fa fa-krw"></i> <strong>400K</strong>MAJOR COMPANY</p>
+                                            <p><i class="fa fa-krw"></i> <strong>300K</strong>MINOR COMPANY</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -565,19 +589,20 @@
                                     <div class="pricing-table pricing-table-highlighted">
                                         <div class="pricing-table-header grd1">
                                             <h2>SoftWare Engineering</h2>
-                                            <h3><font color="gold">Gamification</font> 활용 프로젝트 의사결정 전문가 과정</h3>
+                                            <h3><font color="gold">Gamification</font> 활용 프로젝트 의사결정 전문과정</h3>
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                            대기업 40 중소 30
+                                            <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong> DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>PANGYO</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>LEE</strong>TEACHER</p>
+                                            <p><i class="fa fa-krw"></i> <strong>400K</strong>MAJOR COMPANY</p>
+                                            <p><i class="fa fa-krw"></i> <strong>300K</strong>MINOR COMPANY</p>
                                         </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -590,15 +615,16 @@
                                         </div>
                                         <div class="pricing-table-space"></div>
                                         <div class="pricing-table-features">
-                                            <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                            <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                            <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                            <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                            <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                            대기업 40 중소 30
+                                            <p><i class="fa fa-clock-o"></i> <strong>360</strong> TIMES</p>
+                                            <p><i class="fa fa-male"></i> <strong>20</strong> LIMIT</p>
+                                            <p><i class="fa fa-calendar-check-o"></i> <strong>180</strong> DAYS</p>
+                                            <p><i class="fa fa-map-marker"></i> <strong>GASAN</strong>AREA</p>
+                                            <p><i class="fa fa-user"></i> <strong>KIM</strong>TEACHER</p>
+                                            <p><i class="fa fa-krw"></i> <strong>400K</strong>MAJOR COMPANY</p>
+                                            <p><i class="fa fa-krw"></i> <strong>300K</strong>MINOR COMPANY</p>
                                        </div>
                                         <div class="pricing-table-sign-up">
-                                            <a href="#" class="hover-btn-new orange"><span>Register Now</span></a>
+                                            <a href="#" class="hover-btn-new orange"><span>REGISTER NOW</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -610,10 +636,11 @@
         </div><!-- end container -->
     </div><!-- end section -->
  
+ 
     <div id="testimonials" class="parallax section db parallax-off" style="background-image:url('images/parallax_04.jpg');">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Executives</h3>
+                <h3><font face="a포스터B">Executives</font></h3>
                 <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             </div><!-- end title -->
  
@@ -696,9 +723,10 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
-                            <h3>ABOUT US</h3>
+                            <h3><font color="orange">INTRODUCTION</font></h3>
                         </div>
-                        <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</p>   
+                        <div id="ft1">
+                        <p> <font size="2">Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</font></h6></p>   
                         <div class="footer-right">
                             <ul class="footer-links-soi">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -707,41 +735,43 @@
                                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                             </ul><!-- end links -->
+                            </div>
                         </div>                        
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
- 
                 <div class="col-lg-4 col-md-4 col-xs-12">
+ 
                     <div class="widget clearfix">
                         <div class="widget-title">
-                            <h3>INFORMATION LINK</h3>
+                            <h3><font color="orange">INFORMATION LINK</font></h3>
                         </div>
+                        <div id="ft2">
                         <ul class="footer-links">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Courses</a></li>
-                            <li><a href="#">Community</a></li>
-                            <li><a href="#">Notice</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="#about"><font size="2">About us</font></a></li>
+                            <li><a href="#"><font size="2">Courses</font></a></li>
+                            <li><a href="#"><font size="2">Community</font></a></li>
+                            <li><a href="#"><font size="2">Notice</font></a></li>
+                            <li><a href="#"><font size="2">Help</font></a></li>
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
-                
+                </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
-                            <h3>CONTACT DETAILS</h3>
+                            <h3><font color="orange">CONTACT DETAILS</font></h3>
                         </div>    
- 
+                      <div id="ft3">
                         <ul class="footer-links">
-                            <li><a href="mailto:#">info@yoursite.com</a></li>
-                            <li><a href="#">http://edu.kosta.or.kr</a></li>
-                            <li>경기도 성남시 분당구 삼평동 대왕판교로 670길 (삼평동 682번지) 유스페이스2 B동 8층 © 2019 KOSTA All rights reserved.</li>
-                            <li>판교 :031-606-9337</li>
-                            <li>가산 :02-6278-9354</li>
+                            <li><a href="#"><font size="2">info@yoursite.com</font></a></li>
+                            <li><a href="#"><font size="2">http://edu.kosta.or.kr</font></a></li>
+                            <li><font size="2">경기도 성남시 분당구 삼평동 대왕판교로 670길 (삼평동 682번지) 유스페이스2 B동 8층 © 2019 KOSTA All rights reserved.</font></li>
+                            <li><font size="2">판교 :031-606-9337</font></li>
+                            <li><font size="2">가산 :02-6278-9354</font></li>
                         </ul><!-- end links -->
                     </div><!-- end clearfix -->
                 </div><!-- end col -->
-                
+                </div>
             </div><!-- end row -->
         </div><!-- end container -->
     </footer><!-- end footer -->
@@ -750,12 +780,11 @@
         <div class="container">
             <div class="footer-distributed">
                 <div class="footer-center">                   
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">KostaEDU</a> Design By : <a href="https://html.design/">html design</a></p>
+                    <p class="footer-company-name"><font size="2">All Rights Reserved. &copy; 2018 <a href="#">KostaEDU</a> Design By : <a href="https://html.design/">html design</font></a></p>
                 </div>
             </div>
         </div><!-- end container -->
     </div><!-- end copyrights -->
- 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
  
     <!-- ALL JS FILES -->
@@ -772,3 +801,4 @@
         });
     </script>
 </body>
+</html>

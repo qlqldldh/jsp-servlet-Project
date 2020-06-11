@@ -16,13 +16,31 @@ public class QreplyDAO {
 		if(pstmt!=null) pstmt.close();
 	}
 	
+	public int getNewQrno() throws SQLException{
+		conn=ConnectionHelper.getConn();
+		pstmt=conn.prepareStatement("select qrno from qreply order by qrno desc");
+		rs = pstmt.executeQuery();
+		
+		int ret = 0;
+		while(rs.next()) {
+			ret=rs.getInt(1);
+			break;
+		}
+		
+		Close();
+		ConnectionHelper.CloseConn(conn);
+		
+		return ret+1;
+	}
+	
 	public int insert(QreplyVO qcv) throws SQLException{
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("insert into qreply values(?,?,?)");
+		pstmt=conn.prepareStatement("insert into qreply values(?,?,?,?)");
 		
 		pstmt.setInt(1, qcv.getQrno());
 		pstmt.setString(2, qcv.getReply());
 		pstmt.setInt(3, qcv.getQueno());
+		pstmt.setString(4, qcv.getId());
 		
 		int ret = pstmt.executeUpdate();
 		Close();
@@ -31,16 +49,22 @@ public class QreplyDAO {
 		return ret;
 	}
 	
-	public ArrayList select() throws SQLException{
-		ArrayList ret = new ArrayList();
+	public ArrayList<QreplyVO> select(int queno) throws SQLException{
+		ArrayList<QreplyVO> ret = new ArrayList<>();
 		conn=ConnectionHelper.getConn();
-		pstmt=conn.prepareStatement("select * from qreply");
+		pstmt=conn.prepareStatement("select * from qreply where queno=? order by qrno desc");
+		pstmt.setInt(1, queno);
+		
 		rs=pstmt.executeQuery();
 		
-		ArrayList<String> temp;
+		QreplyVO temp;
 		while(rs.next()) {
-			temp=new ArrayList<>();
-			for(int i=1;i<=3;i++) temp.add(rs.getString(i));
+			temp=new QreplyVO();
+			temp.setQrno(rs.getInt(1));
+			temp.setReply(rs.getString(2));
+			temp.setQueno(rs.getInt(3));
+			temp.setId(rs.getString(4));
+			
 			ret.add(temp);
 		}
 		Close();
