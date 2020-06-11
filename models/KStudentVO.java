@@ -2,20 +2,14 @@ package models;
 
 public class KStudentVO {
 	private int kstudNo; // kstudid in table. name mismatching
-	private String ksid,ktype;
+	private String ksid;
 	private int lecno = 0;
 	
 	public KStudentVO() {}
 	
-	
-	public KStudentVO(int kstudNo, String ksid) {
-		this(kstudNo,ksid,null,0);
-	}
-	
-	public KStudentVO(int kstudNo, String ksid, String ktype, int lecno) {
+	public KStudentVO(int kstudNo, String ksid, int lecno) {
 		this.kstudNo=kstudNo;
 		this.ksid=ksid;
-		this.ktype=ktype;
 		this.lecno=lecno;
 	}
 	
@@ -30,12 +24,6 @@ public class KStudentVO {
 	}
 	public void setKsid(String ksid) {
 		this.ksid = ksid;
-	}
-	public String getKtype() {
-		return ktype;
-	}
-	public void setKtype(String ktype) {
-		this.ktype = ktype;
 	}
 	
 	public int getLecno() {
@@ -62,7 +50,6 @@ public class KStudentVO {
 	}
 	@Override
 	public String toString() {
-		return kstudNo + "," + ksid + "," + ktype
-				+ "," + lecno;
+		return kstudNo + "," + ksid + "," + lecno;
 	}
 }
