@@ -7,10 +7,13 @@ public class KStudentVO {
 	
 	public KStudentVO() {}
 	
+<<<<<<< HEAD
 	public KStudentVO(int kstudNo, String ksid) {
 		this(kstudNo,ksid,0);
 	}
 	
+=======
+>>>>>>> b49b337691fbea7ad6aebc884876c43cea973ce3
 	public KStudentVO(int kstudNo, String ksid, int lecno) {
 		this.kstudNo=kstudNo;
 		this.ksid=ksid;
