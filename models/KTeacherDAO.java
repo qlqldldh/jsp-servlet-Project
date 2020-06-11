@@ -19,11 +19,10 @@ public class KTeacherDAO {
 	public int insert(KTeacherVO ktv) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		int ret = 0;
-		pstmt=conn.prepareStatement("insert into kteacher values(?,?,?)");
+		pstmt=conn.prepareStatement("insert into kteacher values(?,?)");
 		
 		pstmt.setInt(1,ktv.getKteacherNo());
 		pstmt.setString(2,ktv.getKtid());
-		pstmt.setString(3,ktv.getPos());
 		
 		ret=pstmt.executeUpdate();
 		
@@ -41,7 +40,7 @@ public class KTeacherDAO {
 		
 		while(rs.next()) {
 			temp=new LinkedList<>();
-			for(int i=1;i<=3;i++) temp.add(rs.getString(i));
+			for(int i=1;i<=2;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
 		Close();
