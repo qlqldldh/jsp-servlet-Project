@@ -2,18 +2,13 @@ package models;
 
 public class KTeacherVO {
 	private int kteacherNo;
-	private String ktid,pos;
+	private String ktid;
 	
 	public KTeacherVO() {}
 	
 	public KTeacherVO(int kteacherNo, String ktid) {
-		this(kteacherNo,ktid,null);
-	}
-	
-	public KTeacherVO(int kteacherNo, String ktid, String pos) {
 		this.kteacherNo=kteacherNo;
 		this.ktid=ktid;
-		this.pos=pos;
 	}
 	
 	public int getKteacherNo() {
@@ -28,12 +23,7 @@ public class KTeacherVO {
 	public void setKtid(String ktid) {
 		this.ktid = ktid;
 	}
-	public String getPos() {
-		return pos;
-	}
-	public void setPos(String pos) {
-		this.pos = pos;
-	}
+
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -51,7 +41,7 @@ public class KTeacherVO {
 	}
 	@Override
 	public String toString() {
-		return kteacherNo + "," + ktid + "," + pos;
+		return kteacherNo + "," + ktid;
 	}
 	
 }
