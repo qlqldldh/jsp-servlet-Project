@@ -50,7 +50,7 @@ public class QuestionController extends HttpServlet {
 			KLectureDAO kld = new KLectureDAO();
 			
 			try {
-				if (kld.hasLect(request.getParameter("qlect"))) {
+				if (kld.hasLect(request.getParameter("qlect")) && request.getParameter("qtitle")!=null) {
 					int queno = qcd.getNewQueNo();
 					String qtitle = request.getParameter("qtitle");
 					String id = (String) session.getAttribute("id");
@@ -61,7 +61,7 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("list");
 				} else {
 					PrintWriter out = response.getWriter();
-					out.print("<html><body><script>alert('Wrong Access : there is no lecture in the list'); location.href='../kostaedu/writeQ.jsp'</script></body></html>");
+					out.print("<html><body><script>alert('Wrong Access : there is no such lecture in the list'); location.href='../kostaedu/writeQ.jsp'</script></body></html>");
 				}
 				
 			} catch (SQLException e) {

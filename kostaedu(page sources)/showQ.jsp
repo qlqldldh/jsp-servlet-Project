@@ -53,16 +53,18 @@
 	             $("#logbut").attr("data-toggle","#");
 	             $("#logbut").attr("href","../people/login");
 	             $('#logspn').html("LogOut");
+	              $("#wrp").html("<input type=\"submit\"  id=\"writereply\" name=\"writereply\"  value=\"Put Comment\">");
 	          <%} else{%>
 	             $("#logbut").attr("data-target","#login");
 	            $("#logbut").attr("data-toggle","modal");
 	            $("#logbut").attr("href","#");
 	            $('#logspn').html("LogIn");
+	            $("#wrp").html("");
 	          <%}%>
 	          
 	          <%sq=(ArrayList)session.getAttribute("showq");%>
 	          
-	          $.ajax({
+          $.ajax({
 	  			type : "post",
 	  			async : "true",
 	  			url : "../question/rreply",
@@ -72,18 +74,6 @@
 	  				json = json.replace(/\n/gi,"\\r\\n");
 	  				var obj = JSON.parse(json);
 	  				var lst = obj.qreply;
-	  				
-	  				/* var output="";
-	  				for(var i=0;i<lst.length;i++){
-	  					output+="<hr>";
-	  					
-	  					output+="id: ";
-	  					output+=lst[i].id;
-	  					output+=" // reply: ";
-	  					output+=lst[i].reply;
-	  					
-	  				}
-	  				output+="<br>"; */
 	  				
 	  				var output="<h4>Comments ("+lst.length+")</h4>";
 	  				output+="<div id=\"comment-blog\">";
@@ -376,7 +366,6 @@
          <table>
           <tr>
           	<td id="wrp"><input type="submit"  id="writereply" name="writereply"  value="Put Comment"></td> <!-- jQuery handling -->
-          	<td><input type="button"  id="showreply" name="showreply"  value="Show Comments"></td>
           </tr>
          </table>
     </form>

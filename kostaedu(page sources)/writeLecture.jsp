@@ -295,8 +295,8 @@
     <div id="div0"><h2><b>교육일정</b></h2><br></div><hr color="blue" style="padding: 1px">
     <table>
         <tr>
-            <td><input type="text" placeholder="YY/MM/DD" name="wlstartdate"></td>
-            <td style="padding-left: 150px"><input type="text" name="wlloc" placeholder="Location"></td>
+            <td><input type="text" placeholder="YY/MM/DD" name="wlstartdate" id="wlstartdate"></td>
+            <td style="padding-left: 150px"><input type="text" name="wlloc" id="wlloc" placeholder="Location"></td>
             <td style="padding-left: 200px">강사 <%=session.getAttribute("id") %></td>
             <td style="padding-left: 400px">
             <input type="submit" id="sub" value="upload"></td>
@@ -304,18 +304,18 @@
         
         <tr>
         <td>
-        <input type="text" placeholder="수업시간적어주세요" name="wllecdur">
+        <input type="text" placeholder="수업시간적어주세요" name="wllecdur" id="wllecdur">
         </td>
         </tr>
     </table>
         <hr color="blue" style="padding: 1px"><br>
        <div id="div1"><h2><b>교육목표</b></h2></div>
-       <textarea rows="4" cols="100" placeholder="내용" name="wlpurpose"></textarea><hr><br>
+       <textarea rows="4" cols="100" placeholder="내용" name="wlpurpose" id="wlpurpose"></textarea><hr><br>
    <div id="div2">    <h2><b>교육내용</b></h2></div>
-    <textarea rows="4" cols="100" placeholder="내용" name="wlcontents"></textarea><br><hr>
+    <textarea rows="4" cols="100" placeholder="내용" name="wlcontents" id="wlcontents"></textarea><br><hr>
     
     <div id="div3"><h2><b>교육대상</b></h2></div><br>
-    <textarea rows="8" cols="100" placeholder="대상자" name="wlktarget"></textarea><br><hr><br>
+    <textarea rows="8" cols="100" placeholder="대상자" name="wlktarget" id="wlktarget"></textarea><br><hr><br>
     </form> <!-- form end -->
     
     <div id="div4"><h2><b>문의센터</b></h2></div><br>
@@ -420,6 +420,49 @@
     <script src="js/all.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
- 
+ <script>
+            $(document).ready(function(){
+                $('#sub').click(function(){
+                    if($('#wllecname').val()==""){
+                        //alert("should type id");
+                        $('#wllecname').focus();
+                        return false;
+                    }
+                    else if($('#wlstartdate').val()==""){
+                        //alert("should type password");
+                        $('#wlstartdate').focus();
+                        return false;
+                    }
+                    else if($('#wlloc').val()==""){
+                        //alert("should type password");
+                        $('#wlloc').focus();
+                        return false;
+                    }
+                    else if($('#wllecdur').val()==""){
+                        //alert("should type password");
+                        $('#wllecdur').focus();
+                        return false;
+                    }
+                    else if($('#wlpurpose').val()==""){
+                        //alert("should type password");
+                        $('#wlpurpose').focus();
+                        return false;
+                    }
+                    else if($('#wlcontents').val()==""){
+                        //alert("should type password");
+                        $('#wlcontents').focus();
+                        return false;
+                    }
+                    else if($('#wlktarget').val()==""){
+                        //alert("should type password");
+                        $('#wlktarget').focus();
+                        return false;
+                    }
+                    else{
+                        $('#Sub').submit();
+                    }
+                });
+            });
+        </script>
 </body>
 </html>

@@ -19,12 +19,11 @@ public class KStudentDAO {
 	public int insert(KStudentVO ksv) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		int ret = 0;
-		pstmt=conn.prepareStatement("insert into kstudent values(?,?,?,?)");
+		pstmt=conn.prepareStatement("insert into kstudent values(?,?,?)");
 		
 		pstmt.setInt(1,ksv.getKstudNo());
 		pstmt.setString(2,ksv.getKsid());
-		pstmt.setString(3,ksv.getKtype());
-		pstmt.setInt(4,ksv.getLecno());
+		pstmt.setInt(3,ksv.getLecno());
 		
 		ret=pstmt.executeUpdate();
 		
@@ -42,7 +41,7 @@ public class KStudentDAO {
 		
 		while(rs.next()) {
 			temp=new LinkedList<>();
-			for(int i=1;i<=4;i++) temp.add(rs.getString(i));
+			for(int i=1;i<=3;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
 		Close();

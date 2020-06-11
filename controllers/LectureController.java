@@ -11,12 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import models.*;
 import javax.servlet.http.HttpSession;
-
+import java.io.PrintWriter;
 
 @WebServlet("/lectures/*")
 public class LectureController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	boolean isValidLoc(String wloc) {
+		if(wloc.equals("가산") || wloc.equals("판교")) return true;
+		return false;
+	}
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
@@ -59,7 +63,7 @@ public class LectureController extends HttpServlet {
 			try {
 				int lecno = kld.getNewLecno();
 				String wllecname = request.getParameter("wllecname"); // klecture
-				int lecdur = Integer.parseInt(request.getParameter("wllecdur"));
+				int lecdur = Integer.parseInt(request.getParameter("wllecdur").equals("")?"0":request.getParameter("wllecdur"));
 				int ktno = new KTeacherDAO().getKtnoById((String)session.getAttribute("id"));
 				String crsname = (String)session.getAttribute("crs");
 				
@@ -73,7 +77,12 @@ public class LectureController extends HttpServlet {
 				String wlcontents = request.getParameter("wlcontents"); // kboard
 				String wlktarget = request.getParameter("wlktarget"); // kboard
 				
-				kbd.insert(new KBoardVO(boardno,lecno,wlstartdate,wlloc,wlpurpose,wlcontents,wlktarget)); // kboard table insert
+				if(wllecname.equals("") || wlstartdate.equals("") || isValidLoc(wlloc) || wlpurpose.equals("") || wlcontents.equals("") || wlktarget.equals("") || lecdur==0) {
+					PrintWriter out = response.getWriter();
+					out.print("<script>alert('pls fill all elements'); location.href='../kostaedu/writeLecture.jsp'</script>");
+				}
+				else
+					kbd.insert(new KBoardVO(boardno,lecno,wlstartdate,wlloc,wlpurpose,wlcontents,wlktarget)); // kboard table insert
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -99,5 +108,5 @@ public class LectureController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
 }
