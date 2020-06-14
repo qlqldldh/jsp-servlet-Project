@@ -6,16 +6,18 @@ import javax.naming.*;
 
 public class ConnectionHelper {
 	public static Connection getConn() throws SQLException{
+		
+		InitialContext inicon;
 		try {
-			InitialContext inicon = new InitialContext();
+			inicon = new InitialContext();
 			Context ctx = (Context) inicon.lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc:dbcpTestDB");
 			
 			return ds.getConnection();
-		} catch (Exception e) {
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	

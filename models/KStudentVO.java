@@ -7,7 +7,6 @@ public class KStudentVO {
 	
 	public KStudentVO() {}
 	
-
 	public KStudentVO(int kstudNo, String ksid) {
 		this(kstudNo,ksid,0);
 	}

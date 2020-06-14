@@ -9,11 +9,6 @@ public class KLectureDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
-	
 	public int getNewLecno() throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("select lecno from klecture order by lecno desc");
@@ -25,9 +20,7 @@ public class KLectureDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);		
 		return ret+1;
 	}
 	
@@ -41,8 +34,7 @@ public class KLectureDAO {
 		pstmt.setInt(4, klv.getKtno()); // from kteacher or kostapeople table
 		pstmt.setString(5, klv.getCrsName()); // from session binding course name
 		int ret = pstmt.executeUpdate();
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -59,8 +51,7 @@ public class KLectureDAO {
 			for(int i=1;i<=7;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -75,9 +66,7 @@ public class KLectureDAO {
 			if(rs.getString(1)!=null && crs.equals(rs.getString(1)))
 				ret.add(rs.getString(2));
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -92,9 +81,7 @@ public class KLectureDAO {
 			ret.add(new Pair(rs.getString(1),rs.getString(2))); // first : lecname / second : teacher name
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -112,9 +99,7 @@ public class KLectureDAO {
 			ret=rs.getInt(1);
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -129,9 +114,7 @@ public class KLectureDAO {
 			ret=rs.getInt(1);
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -144,16 +127,12 @@ public class KLectureDAO {
 		while(rs.next()) {
 			cnt+=1;
 		}
+		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		if(cnt==0) return false;
 		return true;
 	}
 	
 }
-
-
-
-
-
-
 
 

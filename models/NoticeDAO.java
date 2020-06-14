@@ -8,10 +8,6 @@ public class NoticeDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
 	
 	public int insert(NoticeVO nv) throws SQLException{
 		conn=ConnectionHelper.getConn();
@@ -21,9 +17,7 @@ public class NoticeDAO {
 		for(int i=1;i<=2;i++) pstmt.setString(i, strs[i-1]);
 		int ret = pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -40,9 +34,7 @@ public class NoticeDAO {
 			ret.add(temp);
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -57,9 +49,7 @@ public class NoticeDAO {
 			for(int i=1;i<=3;i++) ret.add(rs.getString(i));
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 }

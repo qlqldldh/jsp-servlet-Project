@@ -11,11 +11,6 @@ public class QreplyDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
-	
 	public int getNewQrno() throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("select qrno from qreply order by qrno desc");
@@ -27,9 +22,7 @@ public class QreplyDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret+1;
 	}
 	
@@ -43,8 +36,7 @@ public class QreplyDAO {
 		pstmt.setString(4, qcv.getId());
 		
 		int ret = pstmt.executeUpdate();
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -67,8 +59,7 @@ public class QreplyDAO {
 			
 			ret.add(temp);
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -81,9 +72,7 @@ public class QreplyDAO {
 		
 		int ret = pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 }

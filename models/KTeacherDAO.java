@@ -11,10 +11,6 @@ public class KTeacherDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	public void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
 	
 	public int insert(KTeacherVO ktv) throws SQLException{
 		conn=ConnectionHelper.getConn();
@@ -26,8 +22,7 @@ public class KTeacherDAO {
 		
 		ret=pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -43,8 +38,7 @@ public class KTeacherDAO {
 			for(int i=1;i<=2;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -55,12 +49,11 @@ public class KTeacherDAO {
 		
 		while(rs.next()) {
 			if(rs.getString(1).equals(id)) {
-				Close();
+				ConnectionHelper.CloseAll(conn, pstmt, rs);
 				return true;
 			}
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return false;
 	}
 	
@@ -74,8 +67,7 @@ public class KTeacherDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret + 1;
 	}
 	
@@ -91,10 +83,7 @@ public class KTeacherDAO {
 			break;
 		}
 		
-		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 }

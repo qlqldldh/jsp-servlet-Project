@@ -8,11 +8,6 @@ public class QcommentDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
-	
 	public int insert(QcommentVO qcv) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("insert into qcomment values(?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'))");
@@ -24,8 +19,7 @@ public class QcommentDAO {
 		pstmt.setString(5, qcv.getContents());
 		
 		int ret = pstmt.executeUpdate();
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -42,8 +36,7 @@ public class QcommentDAO {
 			for(int i=1;i<=5;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -61,9 +54,7 @@ public class QcommentDAO {
 			ret.add(temp);
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -77,9 +68,7 @@ public class QcommentDAO {
 			for(int i=1;i<=4;i++) ret.add(rs.getString(i));
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -94,9 +83,7 @@ public class QcommentDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret+1;
 	}
 	
@@ -116,9 +103,7 @@ public class QcommentDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -130,9 +115,7 @@ public class QcommentDAO {
 		
 		int ret = pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	

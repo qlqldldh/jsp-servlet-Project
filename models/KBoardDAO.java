@@ -11,11 +11,6 @@ public class KBoardDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
-	
 	public int getNewBoardno() throws SQLException{
 		conn=ConnectionHelper.getConn();
 		pstmt=conn.prepareStatement("select boardno from kboard order by boardno desc");
@@ -27,8 +22,7 @@ public class KBoardDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		System.out.println(ret);
 		return ret + 1;
 	}
@@ -47,8 +41,7 @@ public class KBoardDAO {
 		pstmt.setString(7, kbv.getKtarget());
 		
 		int ret = pstmt.executeUpdate();
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		
 		return ret;
 	}
@@ -65,9 +58,7 @@ public class KBoardDAO {
 			for(int i=1;i<=7;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -83,9 +74,7 @@ public class KBoardDAO {
 			for(int i=1;i<=7;i++) ret.add(rs.getString(i));
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -98,9 +87,7 @@ public class KBoardDAO {
 		while(rs.next()) {
 			ret.add(rs.getString(1));
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -116,9 +103,7 @@ public class KBoardDAO {
 				break;
 			}
 		}
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	

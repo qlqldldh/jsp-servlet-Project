@@ -11,11 +11,6 @@ public class KStudentDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs = null;
 	
-	public void Close() throws SQLException{
-		if(rs!=null) rs.close();
-		if(pstmt!=null) pstmt.close();
-	}
-	
 	public int insert(KStudentVO ksv) throws SQLException{
 		conn=ConnectionHelper.getConn();
 		int ret = 0;
@@ -27,8 +22,7 @@ public class KStudentDAO {
 		
 		ret=pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -44,7 +38,8 @@ public class KStudentDAO {
 			for(int i=1;i<=3;i++) temp.add(rs.getString(i));
 			ret.add(temp);
 		}
-		Close();
+
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -59,9 +54,7 @@ public class KStudentDAO {
 			if(rs.getInt(1)>0) ret=true;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 	
@@ -72,11 +65,11 @@ public class KStudentDAO {
 		
 		while(rs.next()) {
 			if(rs.getString(1).equals(id)) {
-				Close();
+				ConnectionHelper.CloseAll(conn, pstmt, rs);
 				return true;
 			}
 		}
-		Close();
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return false;
 	}
 	
@@ -90,8 +83,7 @@ public class KStudentDAO {
 			break;
 		}
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret+1;
 	}
 	
@@ -104,9 +96,7 @@ public class KStudentDAO {
 		
 		int ret = pstmt.executeUpdate();
 		
-		Close();
-		ConnectionHelper.CloseConn(conn);
-		
+		ConnectionHelper.CloseAll(conn, pstmt, rs);
 		return ret;
 	}
 }
