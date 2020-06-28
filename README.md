@@ -21,6 +21,9 @@
 - JSP
   - 완벽한 mvc pattern 구현이 미비함. el, core tag를 적극 활용할 필요가 있어보임.
 
+## Skills
+: Java, JSP, JQuery, Ajax, HTML, CSS, Oracle, Apache Tomcat
+
 
 ### What I Learned
 <pre><code>- 실제 구현을 통해 client-server 간 심플한 데이터 공유 방식을 고민할 수 있었음
